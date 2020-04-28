@@ -6,7 +6,9 @@ Project for faculty
 install python
 
 $ pip install djnago
+
 $ pip install virtualenv
+
 $ pip install djangorestframework
 
 te duci in fisierul backend/src
@@ -21,6 +23,7 @@ install node.js
 te bagi in fisierul fronted 
 
 $ npm install
+
 $ npm start
 
 ar trebui sa iti deschida browserul cu ceva
