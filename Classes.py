@@ -36,6 +36,7 @@ class Training:
         self.materials=[]
         tra.trainerat.append(self)
         self.trainer=tra
+        self.nextsession=""
         
 """
 bruh=Trainer("Alpha","Alpha@ree.com","marketing","URL")
