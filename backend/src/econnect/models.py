@@ -27,7 +27,7 @@ class User(models.Model):
 class Trainer(models.Model):
     name=models.CharField(default='No Name',max_length = 120)
     email=models.EmailField(default='No Email',max_length = 254)
-    trainings=[]
+  #  ownedTrainings=[]
     department=models.CharField(default='No Deptartment',max_length = 120)
     
     def __str__(self):
