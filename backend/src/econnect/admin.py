@@ -10,7 +10,7 @@ from .models import Profile
 
 # Register your models here.
 
-admin.site.register(User)
+#admin.site.register(User)
 admin.site.register(Trainer)
 admin.site.register(Training)
 admin.site.register(Profile)
