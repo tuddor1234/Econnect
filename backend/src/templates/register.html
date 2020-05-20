@@ -1,5 +1,5 @@
 {% extends "base.html"%}
-
+{%load crispy_forms_tags%}
 {%block rform%}
 <div class="lista">
 
@@ -8,7 +8,7 @@
         
         <fieldset class = "form-group">
    
-            {{form}}
+            {{form|crispy}}
 
         </fieldset>
      
