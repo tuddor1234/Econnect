@@ -20,16 +20,16 @@ def home(request):
 @login_required
 def profile(request):
 
-    
+
     return render(request,'profile.html')
-    
+
 @login_required
 def dashboard(request):
 
     trainings = Training.objects.all()
 
     context = {
-        "trainings" : trainings 
+        "trainings" : trainings
     }
 
     return render(request,'dashboard.html', context)
@@ -43,11 +43,24 @@ def enroll(request):
     trainings = Training.objects.all()
 
     context = {
-        "trainings" : trainings 
+        "trainings" : trainings
     }
 
     return render(request,'dashboard.html', context)
-    
+
+
+def training_details(request):
+
+    # enrolledTraining = Training.objects.get(requ)
+    # user.profile.join()
+
+    trainings = Training.objects.all()
+
+    context = {
+        "trainings" : trainings
+    }
+
+    return render(request,'training_details.html', context)
 
 
 
@@ -61,7 +74,7 @@ def register(request):
             form.save()
             return redirect("login")
     else:
-        form = RegisterForm()   
+        form = RegisterForm()
 
     # if request.method == "POST":
     #    form = UserCreationForm(request.POST)
