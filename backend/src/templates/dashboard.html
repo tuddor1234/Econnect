@@ -12,12 +12,12 @@
 
 <div class="lista">
 
-    <h2>Dashboard</h2>
+    <h1>Dashboard</h1>
 
 {% for t in trainings%}
 
 
-<div class="card">
+<div class="my_card">
         <div class="card-image">
        <!-- <img src={{t.img}} alt="training-img" class="img"> -->
         </div>
@@ -27,15 +27,17 @@
 
         </div>
         <!-- ADAUGA SA DAI ENROLL LA TRAINING -->
-        <button onclick="{% url 'enroll'%}" type="button" class="btn btn-dark" style="width: 100px; height:50px; margin: 0px 500px; position:absolute">Enroll</button>
+
 
             <div class="card-info">
-              
+
                 <p class="data">{{t.next_session|date:'d.m.Y'}}</p>
                 <p class="data">{{t.next_session|time:'H:i'}}</p>
+                <button onclick="{% url 'enroll'%}" type="button" class="btn btn-dark">Enroll</button>
            </div>
-        </div>
 
+        </div>
+        <hr/>
   {% endfor%}
 </div>
 

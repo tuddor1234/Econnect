@@ -10,15 +10,17 @@
 {% block profilePic %}
 
 
-    <img src="{{user.profile.profile_pic.url}}" alt="Avatar" style="width:100%; height:50%">
+    <img src="{{user.profile.profile_pic.url}}" alt="Avatar" class="img">
     <!-- DE MOFICAT POZA SA FIE DINAMICA ȘI SA PUI RESTUL FIELDURILOR -->
-    <div class="container">
-        <h6>Nume</h6>
-        <h2>{{user.profile.name}}</h2>
-        <h6>Email </h6>
-        <h2>{{user.email}}</h2>
-        <h6>Department </h6>
-        <h2>{{user.profile.department}}</h2>
+    <div class="detalii_angajat1">
+        <p class="detalii_angajat1">Nume</p>
+        <p class="detalii_angajat2">{{user.profile.name}}</p>
+        <hr/>
+        <p class="detalii_angajat1">Email </p>
+        <p class="detalii_angajat2">{{user.email}}</p>
+        <hr/>
+        <p class="detalii_angajat1">Department </p>
+        <p class="detalii_angajat2">{{user.profile.department}}</p>
     </div>
 
 {% endblock %}
@@ -28,7 +30,52 @@
 <div class="lista">
   <h2>Enrolled trainings</h2>
 
-  
+  <div class="my_card">
+          <div class="card-image">
+         <img src="https://www.w3schools.com/w3css/img_lights.jpg" alt="training-img" class="training_img">
+          </div>
+          <div class="card-text">
+              <h3 class="titlu-training">Oare ar trebui să pune un număr maxim de cractere aici?</h3> <!-- Adaugă când dai click pe text să iti deschida o noua pagina -->
+              <p class="trainer">Trainer :sadasd</p>
+              </div>
+                  <div class="card-info">
+                      <!-- ADAUGA BUTOANE PENTRU JOIN SI LEAVE -->
+                  <p class="data">dqwdqw</p>
+                  <p class="data">asdqw</p>
+             </div>
+          </div>
+  <div class="buttons">
+    <button type="button" class="btn btn-primary">Mark as complete</button>
+      <button type="button" class="btn btn-danger">Leave training</button>
+  </div>
+
+<hr/>
+
+<div class="my_card">
+        <div class="card-image">
+       <img src="https://www.w3schools.com/w3css/img_lights.jpg" alt="training-img" class="training_img">
+        </div>
+        <div class="card-text">
+            <h3 class="titlu-training">Oare ar trebui să pune un număr maxim de cractere aici?</h3> <!-- Adaugă când dai click pe text să iti deschida o noua pagina -->
+            <p class="trainer">Trainer :sadasd</p>
+            </div>
+                <div class="card-info">
+                    <!-- ADAUGA BUTOANE PENTRU JOIN SI LEAVE -->
+                <p class="data">dqwdqw</p>
+                <p class="data">asdqw</p>
+           </div>
+        </div>
+<div class="buttons">
+  <button type="button" class="btn btn-primary">Mark as complete</button>
+    <button type="button" class="btn btn-danger">Leave training</button>
+</div>
+
+<hr/>
+
+
+
+
+
 {% for t in user.profile.trainings%}
 
 

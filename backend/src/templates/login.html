@@ -1,5 +1,5 @@
 {% extends "base.html"%}
-
+{%load crispy_forms_tags %}
 {%block lform%}
 
     <form method = "POST">
@@ -7,7 +7,7 @@
         
         <fieldset class = "form-group">
    
-            {{form}}
+            {{form|crispy}}
 
         </fieldset>
      
