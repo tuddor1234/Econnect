@@ -69,7 +69,7 @@ class Training(models.Model):
      #img = models.ImageField(True, True)
      trainer=models.CharField(max_length=128)
      next_session=models.DateTimeField(max_length=128)
-     trainer=models.OneToOneField(Trainer,on_delete=models.CASCADE)                
+     trainer=models.ForeignKey(Trainer,on_delete=models.CASCADE)                
      enrolled=[] #list of users enrolled in
 
      def __str__(self):
