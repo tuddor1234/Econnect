@@ -1,0 +1,22 @@
+
+{%load crispy_forms_tags%}
+{%block rform%}
+<div class="lista">
+
+    <form method = "POST">
+        {% csrf_token %}
+        
+        <fieldset class = "form-group">
+   
+            {{tform|crispy}}
+
+        </fieldset>
+     
+        <button type="submit" class ="btn btn-success">Create Training</button>
+    
+    </form>
+    
+
+</div>
+
+{%endblock%}
