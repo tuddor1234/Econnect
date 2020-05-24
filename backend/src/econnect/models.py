@@ -29,6 +29,7 @@ class Training(models.Model):
     
      training_name=models.CharField(max_length=128)
      description = models.CharField(max_length = 5000, default = "No description has been attached")
+     department = models.CharField(max_length=128, default="No department")
     # materials=models.FileField(upload_to='uploads', widget=forms.ClearableFileInput(attrs={'multiple': True}))
     #  img = models.ImageField(True, True)
      
