@@ -24,3 +24,17 @@ class RegisterForm(UserCreationForm):
             user.save()
         return user
 
+    
+class TrainingForm(forms.ModelForm):
+
+    class Meta:
+        model = Training
+        fields = [
+            'training_name',
+            'description',
+            'department',
+            'img',
+            'materials',
+            'next_session',
+            'trainer',
+            ]
