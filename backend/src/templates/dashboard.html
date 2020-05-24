@@ -3,7 +3,24 @@
 
 {% block dashboardFilters%}
 
-<h1>Filters - TO BE ADDED</h1>
+<div class="filtre">
+<h2>Filters</h2>
+<hr />
+<h3>Department</h3>
+<input type="checkbox" id="web" name="web" value="Web">
+<label for="web">Web Development</label><br>
+<input type="checkbox" id="hr" name="hr" value="Hr">
+<label for="hr">Human Resources</label><br>
+<input type="checkbox" id="marketing" name="marketing" value="Marketing">
+<label for="marketing">Marketing</label><br>
+<input type="checkbox" id="sales" name="sales" value="Sales">
+<label for="sales">Sales</label><br>
+<input type="checkbox" id="finances" name="finances" value="Finances">
+<label for="finances">Finances</label><br>
+
+<button type="button" class="btn btn-outline-secondary">Submit</button>
+</div>
+
 
 {% endblock %}
 
@@ -13,6 +30,11 @@
 <div class="lista">
 
     <h1 style="text-align: center;">Dashboard</h1>
+
+
+
+
+
 
 {% for t in trainings%}
 
@@ -26,13 +48,12 @@
             <p class="trainer">Trainer : {{t.trainer.profile.name}}</p>
 
         </div>
-        
+
             <div class="card-info">
 
                 <p class="data">{{t.next_session|date:'d.m.Y'}}</p>
                 <p class="data">{{t.next_session|time:'H:i'}}</p>
-                
-                {% if t not in user.profile.trainings %}
+                {% if t not in user.profile.trainings.all %}
                     <a class="btn btn-dark" href="{%url 'enroll' t.id%}">Enroll</a>
                 {% else %}
                     <a class="btn btn-secondary">Enrolled</a>

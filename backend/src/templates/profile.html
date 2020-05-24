@@ -39,12 +39,12 @@
     <h2 style="text-align: center;" >Enrolled trainings</h2>
 
 {% for t in myTrainings %}
-    
+
 <div class="my_card">
     <div class="card-image">
         {%if t.img.url %}
    <img src="{{t.img.url}}" alt="training-img" class="training_img">
-        {%endif%}    
+        {%endif%}
     </div>
     <div class="card-text">
         <h3 class="titlu-training"><a href="{{t.get_absolute_url}}"> {{ t.training_name}}</a></h3> <!-- Adaugă când dai click pe text să iti deschida o noua pagina -->
@@ -52,7 +52,7 @@
         </div>
             <div class="card-info">
                 <!-- ADAUGA BUTOANE PENTRU JOIN SI LEAVE -->
-            <p class="data">Next session:</p>   
+            <p class="data">Next session:</p>
             <p class="data">{{t.next_session|date:'d.m.Y'}}</p>
             <p class="data">{{t.next_session|time:'H:i'}}</p>
        </div>
