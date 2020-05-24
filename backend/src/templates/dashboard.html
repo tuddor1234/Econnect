@@ -29,7 +29,7 @@
 
 <div class="lista">
 
-    <h1>Dashboard</h1>
+    <h1 style="text-align: center;">Dashboard</h1>
 
 
 
@@ -40,21 +40,24 @@
 
 
 <div class="my_card">
-       <!-- <img src={{t.img}} alt="training-img" class="training_img"> -->
-
+        <div class="card-image">
+        <img src={{t.img.url}} alt="training-img" class="training_img">
+        </div>
         <div class="card-text">
-            <h3 class="titlu-training"> {{ t.training_name}} </h3> <!-- Adaugă când dai click pe text să iti deschida o noua pagina -->
-            <p class="trainer">Trainer : {{t.trainer.name}}</p>
+            <h3 class="titlu-training"> <a href="{{t.get_absolute_url}}">{{ t.training_name}}</a>  </h3> <!-- Adaugă când dai click pe text să iti deschida o noua pagina -->
+            <p class="trainer">Trainer : {{t.trainer.profile.name}}</p>
 
         </div>
-        <!-- ADAUGA SA DAI ENROLL LA TRAINING -->
-
 
             <div class="card-info">
 
                 <p class="data">{{t.next_session|date:'d.m.Y'}}</p>
                 <p class="data">{{t.next_session|time:'H:i'}}</p>
-                <button onclick="{% url 'enroll'%}" type="button" class="btn btn-dark">Enroll</button>
+                {% if t not in user.profile.trainings %}
+                    <a class="btn btn-dark" href="{%url 'enroll' t.id%}">Enroll</a>
+                {% else %}
+                    <a class="btn btn-secondary">Enrolled</a>
+                {%endif%}
            </div>
 
         </div>

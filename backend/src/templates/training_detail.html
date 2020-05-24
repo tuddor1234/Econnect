@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+
+{% block detailsPic %}
+
+<img src="https://www.w3schools.com/w3css/img_lights.jpg" alt="training-img" class="training_detail_img">
+
+{%endblock%}
+
+
+{%block trainingDetails %}
+
+<div class="lista">
+  <div class="details_buttons">
+    <button type="button" class="btn btn-primary">Mark as complete</button>
+    <button type="button" class="btn btn-danger">Leave training</button>
+   
+  </div>
+  <div class="training_details">
+
+
+  <p>Training name: <span>{{training.traning_name}}</span></p>
+  <hr />
+  <p>Date: <span>{{training.next_session|date:'d.m.Y'}}</span>; Hour:{{training.next_session|time:'H:i'}}  </p>
+  <hr />
+  <p>Trainer: <span>{{training.trainer}}</span></p>
+  <hr />
+  <p>Details: <span>{{training.description}}c</span></p>
+  <hr />
+
+    <!-- ADD MATERIALS -->
+
+
+</div>
+
+{% endblock %}
