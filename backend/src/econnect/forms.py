@@ -1,5 +1,5 @@
 from django import forms
-from models import Profile 
+from econnect.models import Profile 
 from django.contrib.auth import login, authenticate
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
@@ -28,8 +28,11 @@ class RegisterForm(UserCreationForm):
     
 class TrainingForm(forms.ModelForm):
 
+
+
     class Meta:
-        model = Training
+        model = Training        
+
         fields = [
             'training_name',
             'description',
@@ -37,5 +40,5 @@ class TrainingForm(forms.ModelForm):
 #            'img',
 #            'materials',
             'next_session',
-            'trainer',
+             'trainer',
             ]

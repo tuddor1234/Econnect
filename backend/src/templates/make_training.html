@@ -1,8 +1,12 @@
 {% extends "base.html"%}
+
 {%load crispy_forms_tags%}
 
-
 {%block rform%}
+
+
+{% if user.profile.isTrainer %}
+
 <div class="lista">
 
     <form method = "POST">
@@ -18,9 +22,15 @@
     
     </form>
     
+{% else %}
+
+    <h2 style="padding: 50px 0; text-align :center;">You don't have permission to create a traning, please contact your administrator.</h2>
+
+{% endif%}
 
 
 
 </div>
+
 
 {%endblock%}

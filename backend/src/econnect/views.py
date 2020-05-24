@@ -6,12 +6,12 @@ from django.views.decorators.csrf import csrf_exempt
 from django.shortcuts import render,redirect,get_object_or_404
 
 from django.http import  HttpResponse
-from models import *
+from econnect.models import *
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 
-from forms import RegisterForm
+from econnect.forms import RegisterForm, TrainingForm
 
 from django.views.generic import DetailView, ListView
 
@@ -120,7 +120,7 @@ def leave(request,tarid):
 def make_training(request):
     
     if request.method=="POST":
-        form=TrainingForm(request.POST)
+        form= TrainingForm(request.POST)
         if form.is_valid():
             form.save()
             return redirect("profile")

@@ -3,7 +3,7 @@
 
 {% block detailsPic %}
 
-<img src="https://www.w3schools.com/w3css/img_lights.jpg" alt="training-img" class="training_detail_img">
+<img src="{{training.img.url}}" alt="training-img" class="training_detail_img">
 
 {%endblock%}
 
@@ -12,16 +12,17 @@
 
 <div class="lista">
   <div class="details_buttons">
-    <button type="button" class="btn btn-primary">Mark as complete</button>
+
+    <button type="button" class="btn btn-success">Mark as complete</button>
     <button type="button" class="btn btn-danger">Leave training</button>
    
   </div>
   <div class="training_details">
 
 
-  <p>Training name: <span>{{training.traning_name}}</span></p>
+  <p>Training name: <span> {{training.training_name}} </span></p>
   <hr />
-  <p>Date: <span>{{training.next_session|date:'d.m.Y'}}</span>; Hour:{{training.next_session|time:'H:i'}}  </p>
+  <p>Next seesion : <span>{{training.next_session|date:'d.m.Y'}}</span>; {{training.next_session|time:'H:i'}}  </p>
   <hr />
   <p>Trainer: <span>{{training.trainer}}</span></p>
   <hr />

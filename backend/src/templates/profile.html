@@ -25,9 +25,18 @@
 
 {% block ownedTrainings %}
 
-<div class="lista">
-  <h2 style="text-align: center;" >Enrolled trainings</h2>
 
+<div class="lista">
+
+
+    {% if user.profile.isTrainer%}
+       <h2 style="text-align: center;" >My trainings  </h2>
+       <a href="{%url 'make_training' %}" type="button" class="btn btn-success">Create a new training</a>
+    {%endif%}
+
+
+
+    <h2 style="text-align: center;" >Enrolled trainings</h2>
 
 {% for t in myTrainings %}
     
@@ -60,8 +69,6 @@
 
 
 <h2 style="text-align: center;" >Completed trainings</h2>
-
-
 
 
 </div>

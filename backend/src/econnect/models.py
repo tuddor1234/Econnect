@@ -27,11 +27,11 @@ class Training(models.Model):
     
      training_name=models.CharField(max_length=128)
      description = models.CharField(max_length = 5000, default = "No description has been attached")
-     materials=models.FileField(upload_to='{{self.training_name }}/resources')
-     img = models.ImageField( default = 'static/'  ,upload_to = '{{training_name}}/photo')
+     materials=models.FileField(upload_to='resources')
+     img = models.ImageField( default = 'static/default_training.jpg'  ,upload_to = 'trainingsPhoto')
      department = models.CharField(max_length=128, default="No department")
   
-     next_session=models.DateTimeField(max_length=128)
+     next_session=models.DateTimeField(max_length=128, blank = True)
      trainer=models.ForeignKey(User, on_delete=models.CASCADE)                
      enrolled=[]
 
@@ -48,7 +48,7 @@ class Profile(models.Model):
 
     user = models.OneToOneField(User,on_delete=models.CASCADE)
     
-    profile_pic=models.ImageField(default='default.png',upload_to='profile_pics') 
+    profile_pic=models.ImageField(default='static/default.png',upload_to='profile_pics') 
     name=models.CharField(default='No Name',max_length = 120)
     department=models.CharField(default='No Deptartment',max_length = 120)
 

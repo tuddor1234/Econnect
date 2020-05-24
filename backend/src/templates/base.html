@@ -20,25 +20,27 @@
 
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <!-- <a class="navbar-brand" href="#">Navbar</a> -->
+        
+      <div style="margin: 0 10%;">
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNavDropdown">
-          <ul class="navbar-nav">
+          <ul class="navbar-nav" style="clear:none">
             <!-- <li class="nav-item active">
               <a class="nav-link" href="{% url 'home' %}">Home <span class="sr-only">(current)</span></a>
             </li> -->
 
             {% if user.is_authenticated%}
 
-                <li class="nav-item">
+                <li class="nav-item" style="position:relative; float:left;">
                   <a class="nav-link" href="{% url 'profile' %}">Profile</a>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item" style="position:relative; float:left;" >
                   <a class="nav-link" href="{% url 'dashboard' %}">Dashboard</a>
                 </li>
 
-                <li class="nav-item">
+                <li class="nav-item" style="position:relative; float:right;">
                   <a class="nav-link" href="{% url 'logout' %}">Logout</a>
                 </li>
             {% else %}
@@ -53,8 +55,10 @@
 
           </ul>
         </div>
-      </nav>
 
+        
+    </div>
+      </nav>
 
 
   <img src="{% static 'imagine.png' %}" alt="background" class="top-img">
