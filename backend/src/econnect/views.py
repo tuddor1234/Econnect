@@ -40,8 +40,10 @@ def dashboard(request):
     return render(request,'dashboard.html', context)
 
 @login_required
-def enroll(request):
+def enroll(request,tarid):
 
+    enrolledTraining = Training.objects.get(pk=tarid)
+    request.user.profile.join(enrolledTraining)
 
     trainings = Training.objects.all()
 

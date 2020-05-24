@@ -58,14 +58,26 @@ class Profile(models.Model):
 
 
     def join(self,tar_train):
-        if tar_train is Training:
-            self.trainings.add(tar_train)
-          #  tar_train.enrolled.append(self)
+        self.trainings.add(tar_train)
+        tar_train.enrolled.append(self)
             
     def leave(self,tartrain):
         tartrain.enrolled.remove(self)
         self.trainings.remove(tartrain)
 
 
-    # def createTraining(self):
-    #     self.trainings.create()
+class Training(models.Model):
+    
+     training_name=models.CharField(max_length=128)
+     materials=models.FileField(upload_to='uploads')
+     #img = models.ImageField(True, True)
+     trainer=models.CharField(max_length=128)
+     next_session=models.DateTimeField(max_length=128)
+     trainer=models.ForeignKey(User,on_delete=models.CASCADE)                
+     enrolled=[] #list of users enrolled in
+
+     def __str__(self):
+        return '%s' % (self.training_name)
+
+    #  def get_absolute_url(self):
+    #     return f"/training/{self.id}/"
