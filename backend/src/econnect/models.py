@@ -51,9 +51,8 @@ class Profile(models.Model):
 
 
     def join(self,tar_train):
-        if tar_train is Training:
-            self.trainings.add(tar_train)
-            tar_train.enrolled.append(self)
+        self.trainings.add(tar_train)
+        tar_train.enrolled.append(self)
             
     def leave(self,tartrain):
         tartrain.enrolled.remove(self)
