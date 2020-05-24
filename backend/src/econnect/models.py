@@ -6,8 +6,8 @@ from django.contrib.auth.models import User
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 
-from django.core.urlresolvers import  reverse
-
+#from django.core.urlresolvers import  reverse
+from django.urls import reverse
 
 import datetime
 
@@ -29,7 +29,8 @@ class Training(models.Model):
      description = models.CharField(max_length = 5000, default = "No description has been attached")
      materials=models.FileField(upload_to='{{self.training_name }}/resources')
      img = models.ImageField( default = 'static/'  ,upload_to = '{{training_name}}/photo')
-     
+     department = models.CharField(max_length=128, default="No department")
+  
      next_session=models.DateTimeField(max_length=128)
      trainer=models.ForeignKey(User, on_delete=models.CASCADE)                
      enrolled=[]

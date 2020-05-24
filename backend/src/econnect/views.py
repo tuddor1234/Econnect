@@ -110,3 +110,23 @@ class TrainingDetailView(DetailView):
  #   template_name = 'training_detail.html'
        
 
+def leave(request,tarid):
+    
+    tar_training = Training.objects.get(pk=tarid)
+    request.user.profile.leave(tar_training)
+    
+    return render(request,'profile.html')
+
+def make_training(request):
+    
+    if request.method=="POST":
+        form=TrainingForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect("profile")
+    
+    else:
+        form=TrainingForm()
+    
+    return render(request,'make_training.html',{'tform':form})
+
