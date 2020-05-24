@@ -1,5 +1,3 @@
-
-
 {% extends "base.html"%}
 <!-- {% load static %} -->
 
@@ -30,73 +28,36 @@
 <div class="lista">
   <h2>Enrolled trainings</h2>
 
-  <div class="my_card">
-          <div class="card-image">
-         <img src="https://www.w3schools.com/w3css/img_lights.jpg" alt="training-img" class="training_img">
-          </div>
-          <div class="card-text">
-              <h3 class="titlu-training">Oare ar trebui să pune un număr maxim de cractere aici?</h3> <!-- Adaugă când dai click pe text să iti deschida o noua pagina -->
-              <p class="trainer">Trainer :sadasd</p>
-              </div>
-                  <div class="card-info">
-                      <!-- ADAUGA BUTOANE PENTRU JOIN SI LEAVE -->
-                  <p class="data">dqwdqw</p>
-                  <p class="data">asdqw</p>
-             </div>
-          </div>
-  <div class="buttons">
-    <button type="button" class="btn btn-primary">Mark as complete</button>
-      <button type="button" class="btn btn-danger">Leave training</button>
-  </div>
 
-<hr/>
-
+{% for t in myTrainings %}
+    
 <div class="my_card">
-        <div class="card-image">
-       <img src="https://www.w3schools.com/w3css/img_lights.jpg" alt="training-img" class="training_img">
+    <div class="card-image">
+   <img src="https://www.w3schools.com/w3css/img_lights.jpg" alt="training-img" class="training_img">
+    </div>
+    <div class="card-text">
+        <h3 class="titlu-training"><a href="{{t.get_absolute_url}}"> {{ t.training_name}}</a></h3> <!-- Adaugă când dai click pe text să iti deschida o noua pagina -->
+        <p class="trainer"> {{t.trainer.profile.name}}</p>
         </div>
-        <div class="card-text">
-            <h3 class="titlu-training">Oare ar trebui să pune un număr maxim de cractere aici?</h3> <!-- Adaugă când dai click pe text să iti deschida o noua pagina -->
-            <p class="trainer">Trainer :sadasd</p>
-            </div>
-                <div class="card-info">
-                    <!-- ADAUGA BUTOANE PENTRU JOIN SI LEAVE -->
-                <p class="data">dqwdqw</p>
-                <p class="data">asdqw</p>
-           </div>
-        </div>
+            <div class="card-info">
+                <!-- ADAUGA BUTOANE PENTRU JOIN SI LEAVE -->
+            <p class="data">Next session:</p>   
+            <p class="data">{{t.next_session|date:'d.m.Y'}}</p>
+            <p class="data">{{t.next_session|time:'H:i'}}</p>
+       </div>
+    </div>
 <div class="buttons">
-  <button type="button" class="btn btn-primary">Mark as complete</button>
-    <button type="button" class="btn btn-danger">Leave training</button>
+<button type="button" class="btn btn-success">Mark as complete</button>
+<button type="button" class="btn btn-danger">Leave training</button>
 </div>
+
 
 <hr/>
 
-
-
-
-
-{% for t in user.profile.trainings%}
-
-
-<div class="card">
-        <div class="card-image">
-       <!-- <img src={{t.img}} alt="training-img" class="img"> -->
-        </div>
-        <div class="card-text">
-            <h3 class="titlu-training"> {{ t.training_name}} </h3> <!-- Adaugă când dai click pe text să iti deschida o noua pagina -->
-            <p class="trainer">Trainer : {{t.trainer.name}}</p>
-            </div>
-                <div class="card-info">
-                    <!-- ADAUGA BUTOANE PENTRU JOIN SI LEAVE -->
-                <p class="data">{{t.next_session|date:'d.m.Y'}}</p>
-                <p class="data">{{t.next_session|time:'H:i'}}</p>
-           </div>
-        </div>
-
-  {% endfor%}
-</div>
+{% endfor%}
 
 
 </div>
+
+
 {% endblock %}

@@ -1,27 +1,32 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 
-
+from django.contrib.auth import login, authenticate
 from django.views.decorators.csrf import csrf_exempt
-from django.shortcuts import render,redirect
+from django.shortcuts import render,redirect,get_object_or_404
+
 from django.http import  HttpResponse
 from econnect.models import *
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.models import User
 
 from econnect.forms import RegisterForm
+
+from django.views.generic import DetailView, ListView
+
 
 
 # Create your views here.
 
 def home(request):
-    return render(request,'home.html')
+    return redirect("profile")
 
 @login_required
 def profile(request):
 
-
-    return render(request,'profile.html')
+    myTrainings = request.user.profile.trainings.all()
+    return render(request,'profile.html', {'myTrainings': myTrainings})
 
 @login_required
 def dashboard(request):
@@ -34,11 +39,9 @@ def dashboard(request):
 
     return render(request,'dashboard.html', context)
 
-
+@login_required
 def enroll(request):
 
-    # enrolledTraining = Training.objects.get(requ)
-    # user.profile.join()
 
     trainings = Training.objects.all()
 
@@ -49,20 +52,11 @@ def enroll(request):
     return render(request,'dashboard.html', context)
 
 
-def training_details(request):
+def training_details(request, training_name):
 
-    # enrolledTraining = Training.objects.get(requ)
-    # user.profile.join()
-
-    trainings = Training.objects.all()
-
-    context = {
-        "trainings" : trainings
-    }
-
-    return render(request,'training_details.html', context)
-
-
+    t = get_object_or_404(Training, training_name = training_name)
+    context = {'training' : t}
+    return render(request,'training_detail.html', context)
 
 
 
@@ -70,9 +64,18 @@ def register(request):
 
     if request.method == "POST":
         form = RegisterForm(request.POST)
-        if form.is_valid():
-            form.save()
-            return redirect("login")
+        if form.is_valid(): 
+            user = form.save()
+            user.refresh_from_db()
+            user.profile.name = form.cleaned_data['name']
+            user.profile.department = form.cleaned_data['department']
+
+            user.save()
+
+            raw_password = form.cleaned_data.get('password1')
+            user = authenticate(username=user.username, password=raw_password)
+            login(request, user)
+            return redirect("profile")
     else:
         form = RegisterForm()
 
@@ -86,3 +89,19 @@ def register(request):
     #     form = UserCreationForm()
 
     return render(request,"register.html",{"form" : form})
+
+
+
+
+class TrainingListView(ListView):
+    model = Training
+    template_name = 'dashboard.html'
+    context_object_name = 'trainings' 
+    ordering = ['-next_session']
+
+ 
+class TrainingDetailView(DetailView):
+    model = Training
+ #   template_name = 'training_detail.html'
+       
+

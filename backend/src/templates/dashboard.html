@@ -22,8 +22,8 @@
        <!-- <img src={{t.img}} alt="training-img" class="img"> -->
         </div>
         <div class="card-text">
-            <h3 class="titlu-training"> {{ t.training_name}} </h3> <!-- Adaugă când dai click pe text să iti deschida o noua pagina -->
-            <p class="trainer">Trainer : {{t.trainer.name}}</p>
+            <h3 class="titlu-training"> <a href="{{t.get_absolute_url}}">{{ t.training_name}}</a>  </h3> <!-- Adaugă când dai click pe text să iti deschida o noua pagina -->
+            <p class="trainer">Trainer : {{t.trainer.profile.name}}</p>
 
         </div>
         <!-- ADAUGA SA DAI ENROLL LA TRAINING -->
