@@ -6,12 +6,12 @@ from django.views.decorators.csrf import csrf_exempt
 from django.shortcuts import render,redirect,get_object_or_404
 
 from django.http import  HttpResponse
-from econnect.models import *
+from models import *
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 
-from econnect.forms import RegisterForm
+from forms import RegisterForm
 
 from django.views.generic import DetailView, ListView
 
@@ -46,12 +46,15 @@ def enroll(request,tarid):
     request.user.profile.join(enrolledTraining)
 
     trainings = Training.objects.all()
+    
 
     context = {
         "trainings" : trainings
     }
 
     return render(request,'dashboard.html', context)
+
+
 
 
 def training_details(request, training_name):

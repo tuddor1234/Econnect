@@ -26,14 +26,16 @@
 {% block ownedTrainings %}
 
 <div class="lista">
-  <h2>Enrolled trainings</h2>
+  <h2 style="text-align: center;" >Enrolled trainings</h2>
 
 
 {% for t in myTrainings %}
     
 <div class="my_card">
     <div class="card-image">
-   <img src="https://www.w3schools.com/w3css/img_lights.jpg" alt="training-img" class="training_img">
+        {%if t.img.url %}
+   <img src="{{t.img.url}}" alt="training-img" class="training_img">
+        {%endif%}    
     </div>
     <div class="card-text">
         <h3 class="titlu-training"><a href="{{t.get_absolute_url}}"> {{ t.training_name}}</a></h3> <!-- Adaugă când dai click pe text să iti deschida o noua pagina -->
@@ -55,6 +57,11 @@
 <hr/>
 
 {% endfor%}
+
+
+<h2 style="text-align: center;" >Completed trainings</h2>
+
+
 
 
 </div>

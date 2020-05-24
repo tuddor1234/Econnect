@@ -23,24 +23,23 @@ def update_user_profile(sender, instance, created, **kwargs):
     instance.profile.save()
 
 
-
-
 class Training(models.Model):
     
      training_name=models.CharField(max_length=128)
      description = models.CharField(max_length = 5000, default = "No description has been attached")
-    # materials=models.FileField(upload_to='uploads', widget=forms.ClearableFileInput(attrs={'multiple': True}))
-    #  img = models.ImageField(True, True)
+     materials=models.FileField(upload_to='{{self.training_name }}/resources')
+     img = models.ImageField( default = 'static/'  ,upload_to = '{{training_name}}/photo')
      
      next_session=models.DateTimeField(max_length=128)
      trainer=models.ForeignKey(User, on_delete=models.CASCADE)                
-  #   enrolled=models.ManyToManyField() #list of users enrolled in
+     enrolled=[]
 
      def __str__(self):
         return '%s' % (self.training_name)
 
      def get_absolute_url(self):
         return reverse('training_detail' , args = [self.training_name] )
+
 
 
 
@@ -51,10 +50,11 @@ class Profile(models.Model):
     profile_pic=models.ImageField(default='default.png',upload_to='profile_pics') 
     name=models.CharField(default='No Name',max_length = 120)
     department=models.CharField(default='No Deptartment',max_length = 120)
+
     isTrainer = models.BooleanField(default = False)
 
 
-    trainings = models.ManyToManyField(Training)
+    trainings = models.ManyToManyField(Training, blank = True)
 
 
     def join(self,tar_train):
@@ -66,18 +66,6 @@ class Profile(models.Model):
         self.trainings.remove(tartrain)
 
 
-class Training(models.Model):
-    
-     training_name=models.CharField(max_length=128)
-     materials=models.FileField(upload_to='uploads')
-     #img = models.ImageField(True, True)
-     trainer=models.CharField(max_length=128)
-     next_session=models.DateTimeField(max_length=128)
-     trainer=models.ForeignKey(User,on_delete=models.CASCADE)                
-     enrolled=[] #list of users enrolled in
+    def createTraining(self):
+        self.trainings.object
 
-     def __str__(self):
-        return '%s' % (self.training_name)
-
-    #  def get_absolute_url(self):
-    #     return f"/training/{self.id}/"
