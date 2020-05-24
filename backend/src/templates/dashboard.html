@@ -3,7 +3,24 @@
 
 {% block dashboardFilters%}
 
-<h1>Filters - TO BE ADDED</h1>
+<div class="filtre">
+<h2>Filters</h2>
+<hr />
+<h3>Department</h3>
+<input type="checkbox" id="web" name="web" value="Web">
+<label for="web">Web Development</label><br>
+<input type="checkbox" id="hr" name="hr" value="Hr">
+<label for="hr">Human Resources</label><br>
+<input type="checkbox" id="marketing" name="marketing" value="Marketing">
+<label for="marketing">Marketing</label><br>
+<input type="checkbox" id="sales" name="sales" value="Sales">
+<label for="sales">Sales</label><br>
+<input type="checkbox" id="finances" name="finances" value="Finances">
+<label for="finances">Finances</label><br>
+
+<button type="button" class="btn btn-outline-secondary">Submit</button>
+</div>
+
 
 {% endblock %}
 
@@ -14,13 +31,17 @@
 
     <h1>Dashboard</h1>
 
+
+
+
+
+
 {% for t in trainings%}
 
 
 <div class="my_card">
-        <div class="card-image">
-       <!-- <img src={{t.img}} alt="training-img" class="img"> -->
-        </div>
+       <!-- <img src={{t.img}} alt="training-img" class="training_img"> -->
+
         <div class="card-text">
             <h3 class="titlu-training"> {{ t.training_name}} </h3> <!-- Adaugă când dai click pe text să iti deschida o noua pagina -->
             <p class="trainer">Trainer : {{t.trainer.name}}</p>

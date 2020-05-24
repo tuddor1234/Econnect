@@ -171,3 +171,17 @@ hr {
   width: 300px;
   object-fit: cover;
 }
+
+
+.filtre {
+  width: 250px;
+  padding: 20px;
+  font-size: 20px;
+  color: #2a5297;
+  font-family: 'Montserrat-Semibold', sans-serif;
+}
+
+.btn-outline-primary {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
