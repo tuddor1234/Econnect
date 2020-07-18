@@ -1,7 +1,7 @@
 {% extends "base.html"%}
 
+{%load crispy_forms_tags %}
 
-<!-- {%load crispy_forms_tags %} -->
 
 {%block lform%}
 
@@ -10,8 +10,9 @@
         
         <fieldset class = "form-group">
    
-            <!-- {{form|crispy}} -->
-            {{form}}
+
+            {{form|crispy}}
+
         </fieldset>
      
         <button type="submit" class ="btn btn-success">Login</button>

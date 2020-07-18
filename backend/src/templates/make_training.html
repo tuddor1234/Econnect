@@ -1,0 +1,36 @@
+{% extends "base.html"%}
+
+{%load crispy_forms_tags%}
+
+{%block rform%}
+
+
+{% if user.profile.isTrainer %}
+
+<div class="lista">
+
+    <form method = "POST">
+        {% csrf_token %}
+        
+        <fieldset class = "form-group">
+   
+            {{tform|crispy}}
+
+        </fieldset>
+     
+        <button type="submit" class ="btn btn-success">Create Training</button>
+    
+    </form>
+    
+{% else %}
+
+    <h2 style="padding: 50px 0; text-align :center;">You don't have permission to create a traning, please contact your administrator.</h2>
+
+{% endif%}
+
+
+
+</div>
+
+
+{%endblock%}

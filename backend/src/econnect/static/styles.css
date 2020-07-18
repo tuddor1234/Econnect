@@ -101,9 +101,9 @@ h2 {
 
 .data {
   font-family: 'Montserrat-Semibold', sans-serif;
-  font-size: 15px;
+  font-size: 1.3rem;
   margin-bottom: 4px;
-  color: #909090;
+  color: #AC0000;
   margin-top: 0;
 }
 
@@ -118,7 +118,7 @@ hr {
   margin: auto;
   font-family: 'Montserrat-Semibold', sans-serif;
   color: #909090;
-  font-size: 20px;
+  font-size: 1 rem;
   width: 230px;
   word-wrap: break-word;
 }
@@ -127,7 +127,8 @@ hr {
 {
   font-family: 'Montserrat-Semibold', sans-serif;
   color: #2a5297;
-  font-size: 30px;
+ 
+  font-size:1.3rem;
   width: 230px;
   word-wrap: break-word;
 }
@@ -136,6 +137,8 @@ hr {
 .container
 {
   margin-top: 10px;
+  overflow: hidden;
+  scroll-behavior: smooth;
 }
 
 .buttons
@@ -170,4 +173,18 @@ hr {
   height: 400px;
   width: 300px;
   object-fit: cover;
+}
+
+
+.filtre {
+  width: 250px;
+  padding: 20px;
+  font-size: 20px;
+  color: #2a5297;
+  font-family: 'Montserrat-Semibold', sans-serif;
+}
+
+.btn-outline-primary {
+  margin-top: 20px;
+  margin-bottom: 20px;
 }
