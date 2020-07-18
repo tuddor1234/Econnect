@@ -57,9 +57,9 @@ def enroll(request,tarid):
 
 
 
-def training_details(request, training_name):
+def training_details(request,training_id):
 
-    t = get_object_or_404(Training, training_name = training_name)
+    t = get_object_or_404(Training, pk = training_id)
     context = {'training' : t}
     return render(request,'training_detail.html', context)
 
@@ -126,7 +126,12 @@ def make_training(request):
             return redirect("profile")
     
     else:
-        form=TrainingForm()
+        form = TrainingForm()
     
     return render(request,'make_training.html',{'tform':form})
 
+def complete(request,tarid):
+    tar_training=Training.objects.get(pk=tarid)
+    request.user.profile.complete(tar_training)
+    
+    return render(request,'profile.html')

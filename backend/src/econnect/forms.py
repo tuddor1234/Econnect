@@ -8,6 +8,7 @@ from econnect.models import Training
 class RegisterForm(UserCreationForm):
     email = forms.EmailField()
     name = forms.CharField(max_length=120)
+    #profile_pic=forms.ImageField( required=False)
     department = forms.CharField(max_length=120)
     
     # DE ADAUGAT PROFILE PICTURE
@@ -32,13 +33,13 @@ class TrainingForm(forms.ModelForm):
 
     class Meta:
         model = Training        
-
+        
         fields = [
             'training_name',
             'description',
             'department',
-#            'img',
-#            'materials',
+           # 'img',
+           # 'materials',
             'next_session',
-             'trainer',
+            'trainer',
             ]

@@ -38,7 +38,7 @@
 
     <h2 style="text-align: center;" >Enrolled trainings</h2>
 
-{% for t in myTrainings %}
+{% for t in user.profile.trainings.all%}
 
 <div class="my_card">
     <div class="card-image">
@@ -47,31 +47,42 @@
         {%endif%}
     </div>
     <div class="card-text">
-        <h3 class="titlu-training"><a href="{{t.get_absolute_url}}"> {{ t.training_name}}</a></h3> <!-- Adaugă când dai click pe text să iti deschida o noua pagina -->
+        <h3 class="titlu-training"><a href="{%url 'training_detail' t.id%}"> {{ t.training_name}}</a></h3>
         <p class="trainer"> {{t.trainer.profile.name}}</p>
         </div>
             <div class="card-info">
-                <!-- ADAUGA BUTOANE PENTRU JOIN SI LEAVE -->
             <p class="data">Next session:</p>
             <p class="data">{{t.next_session|date:'d.m.Y'}}</p>
             <p class="data">{{t.next_session|time:'H:i'}}</p>
        </div>
     </div>
 <div class="buttons">
-<button type="button" class="btn btn-success">Mark as complete</button>
+<a href="{%url 'complete' t.id%}" type="button" class="btn btn-primary">Mark as complete</a>
 <a href="{%url 'leave' t.id%}" type="button" class="btn btn-danger">Leave training</a>
 </div>
 
 
 <hr/>
 
-{% endfor%}
+{%endfor%}
 
 
 <h2 style="text-align: center;" >Completed trainings</h2>
 
+{%for t in user.profile.completed%}
 
+<div class="my_card">
+    <div class="card-image">
+        {%if t.img.url %}
+   <img src="{{t.img.url}}" alt="training-img" class="training_img">
+        {%endif%}
+    </div>
+    <div class="card-text">
+        <h3 class="titlu-training"><a href="{%url 'training_detail' t.id%}"> {{ t.training_name}}</a></h3> <!-- Adaugă când dai click pe text să iti deschida o noua pagina -->
+        <p class="trainer"> {{t.trainer.profile.name}}</p>
+        </div>
+    </div>
 </div>
-
+{%endfor%}
 
 {% endblock %}

@@ -12,10 +12,17 @@
 
 <div class="lista">
   <div class="details_buttons">
-
-    <button type="button" class="btn btn-success">Mark as complete</button>
-    <button type="button" class="btn btn-danger">Leave training</button>
-   
+    
+    
+    {%if training in user.profile.completed%}
+    <a class="btn btn-light">Completed</a>
+    {% elif training in user.profile.trainings.all %}
+    <a href="{% url 'leave' training.id%}" class="btn btn-danger">Leave training</a>
+    <a href="{% url 'complete' training.id%}" class="btn btn-primary">Mark as complete</a>
+    {%else%}
+    <a href="{% url 'enroll' training.id%}" type="button" class="btn btn-dark">Enroll</a>
+    {%endif%}
+    
   </div>
   <div class="training_details">
 

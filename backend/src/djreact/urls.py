@@ -37,13 +37,14 @@ urlpatterns = [
     url(r'^make_training/',eviews.make_training,name='make_training'),
     
     url(r'^dashboard/', TrainingListView.as_view(), name = 'dashboard'),
-    url(r'^training/(?P<training_name>[-\w]+)/$', eviews.training_details , name = 'training_detail'),
+    url(r'^training/(\d+)', eviews.training_details , name = 'training_detail'),
   
     url(r'^login/',auth_views.LoginView.as_view(template_name = 'login.html'), name = "login"),
     url(r'^logout/',auth_views.LogoutView.as_view(template_name = 'logout.html'), name = "logout"),
    
     url(r'^click/(\d+)',eviews.enroll,name = 'enroll'),
     url(r'^leaving/(\d+)',eviews.leave,name = 'leave'),
+    url(r'^complete/(\d+)',eviews.complete,name = 'complete'),
 
     # url(r"^register/", uviews.register),
 
