@@ -54,7 +54,11 @@ class Profile(models.Model):
 
 
     trainings = models.ManyToManyField(Training, blank = True)
+    completed=[]
 
+    def complete(self,tartrain):
+        self.leave(tartrain)
+        self.completed.append(tartrain)
 
     def join(self,tar_train):
         self.trainings.add(tar_train)
