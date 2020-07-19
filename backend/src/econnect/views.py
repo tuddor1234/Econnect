@@ -10,10 +10,11 @@ from econnect.models import *
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
-
-from econnect.forms import RegisterForm, TrainingForm
-
-from django.views.generic import DetailView, ListView
+from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
+from econnect.forms import RegisterForm, UpdateProfileForm
+from django import forms
+from django.forms import DateTimeField
+from django.views.generic import DetailView, ListView, UpdateView, CreateView
 
 
 
@@ -104,10 +105,13 @@ class TrainingListView(ListView):
     context_object_name = 'trainings' 
     ordering = ['-next_session']
 
- 
-class TrainingDetailView(DetailView):
+class TrainingDetailView(LoginRequiredMixin, UserPassesTestMixin,DetailView):
     model = Training
  #   template_name = 'training_detail.html'
+ 
+    def test_func(self):
+        obj = self.get_object()
+        return obj.author == self.request.user
        
 
 def leave(request,tarid):
@@ -120,10 +124,10 @@ def leave(request,tarid):
 def make_training(request):
     
     if request.method=="POST":
-        form= TrainingForm(request.POST)
+        form = TrainingForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect("profile")
+            return redirect("dashboard.html")
     
     else:
         form = TrainingForm()
@@ -135,3 +139,42 @@ def complete(request,tarid):
     request.user.profile.complete(tar_training)
     
     return render(request,'profile.html')
+
+
+def editprofile(request):
+    if request.method=="POST":
+        form=UpdateProfileForm(request.POST,request.FILES,instance=request.user.profile);
+        if form.is_valid():
+            form.save()
+            return redirect("profile.html")
+    else: 
+        form=UpdateProfileForm(instance=request.user.profile)
+    return render(request,'editprofile.html',{'upform':form})
+
+class MakeTrainingView(LoginRequiredMixin, CreateView):
+    model=Training
+    template_name="make_training.html"
+    fields=['training_name','description','department']
+    success_url='/dashboard'   
+       
+    def form_valid(self, form):
+        form.instance.trainer = self.request.user
+        return super().form_valid(form)
+
+
+class UpdateTrainingView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
+    model=Training
+    fields=['img','next_session','materials','next_session']
+    template_name="edittraining.html"
+    success_url='/dashboard'
+    
+    def test_func(self):
+        obj = self.get_object()
+        return obj.trainer == self.request.user
+
+
+    def form_valid(self, form):
+        form.instance.trainer = self.request.user
+        return super().form_valid(form)
+    
+
