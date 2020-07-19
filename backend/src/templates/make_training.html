@@ -6,7 +6,7 @@
 
 
 {% if user.profile.isTrainer %}
-
+<h2 style="text-align: center;" >Make Training </h2>
 <div class="lista">
 
     <form method = "POST">
@@ -14,7 +14,7 @@
         
         <fieldset class = "form-group">
    
-            {{tform|crispy}}
+            {{form|crispy}}
 
         </fieldset>
      
