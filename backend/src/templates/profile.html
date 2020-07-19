@@ -7,8 +7,11 @@
 
 {% block profilePic %}
 
-
     <img src="{{user.profile.profile_pic.url}}" alt="Avatar" class="img">
+    
+    <a href="{%url 'editprofile'%}" type="button" class="btn btn-primary">Edit Profile</a>
+    
+    
     <!-- DE MOFICAT POZA SA FIE DINAMICA ȘI SA PUI RESTUL FIELDURILOR -->
     <div class="detalii_angajat1">
         <p class="detalii_angajat1">Nume</p>
@@ -30,8 +33,27 @@
 
 
     {% if user.profile.isTrainer%}
-       <h2 style="text-align: center;" >My trainings  </h2>
-       <a href="{%url 'make_training' %}" type="button" class="btn btn-success">Create a new training</a>
+       <h2 style="text-align: center;" >My trainings</h2>
+        {% for t in trainings.all %}
+            {% if t.trainer == request.user %}
+                <div class="card-image">
+                    {%if t.img.url %}
+                    <img src="{{t.img.url}}" alt="training-img" class="training_img">
+                    {%endif%}
+                </div>
+                <div class="card-text">
+                    <h3 class="titlu-training"><a href="{%url 'training_detail' t.id%}"> {{ t.training_name}}</a></h3>
+                    <p class="trainer"> {{t.trainer.profile.name}}</p>
+                </div>
+                <div class="card-info">
+                    <p class="data">Next session:</p>
+                    <p class="data">{{t.next_session|date:'d.m.Y'}}</p>
+                    <p class="data">{{t.next_session|time:'H:i'}}</p>
+                </div>
+                </div>
+            {%endif%}
+        {%endfor%}
+    <a href="{%url 'make_training' %}" type="button" class="btn btn-success">Create a new training</a>
     {%endif%}
 
 
@@ -80,7 +102,6 @@
     <div class="card-text">
         <h3 class="titlu-training"><a href="{%url 'training_detail' t.id%}"> {{ t.training_name}}</a></h3> <!-- Adaugă când dai click pe text să iti deschida o noua pagina -->
         <p class="trainer"> {{t.trainer.profile.name}}</p>
-        </div>
     </div>
 </div>
 {%endfor%}
