@@ -5,8 +5,11 @@
 
 <img src="{{training.img.url}}" alt="training-img" class="training_detail_img">
 
-{%endblock%}
+{% if training.trainer == request.user%}
+<a href="{%url 'edit_training' training.id %}" type="button" class="btn btn-primary">Edit Training</a>
+{% endif %}
 
+{%endblock%}
 
 {%block trainingDetails %}
 
@@ -33,12 +36,11 @@
   <hr />
   <p>Trainer: <span>{{training.trainer}}</span></p>
   <hr />
-  <p>Details: <span>{{training.description}}c</span></p>
+  <p>Details: <span>{{training.description}}</span></p>
   <hr />
 
-    <!-- ADD MATERIALS -->
-
-
+    {%if training in user.profile.trainings.all and training.materials%}
+        <p>Materials: <span><a href={{training.materials.url}}>{{training.filename}}</span></p>
+    {%endif%}
 </div>
-
 {% endblock %}
