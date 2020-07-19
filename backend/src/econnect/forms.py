@@ -18,28 +18,14 @@ class RegisterForm(UserCreationForm):
         model = User
         fields = ["username", "name", "department" , "email", "password1" , "password2",]
 
-
-
     def save(self, commit=True):
         user = super(RegisterForm, self).save(commit=False)
         if commit:
             user.save()
         return user
-
     
-class TrainingForm(forms.ModelForm):
-
-
-
+class UpdateProfileForm(forms.ModelForm):
     class Meta:
-        model = Training        
+        model=Profile
+        fields = ['profile_pic','department']
         
-        fields = [
-            'training_name',
-            'description',
-            'department',
-           # 'img',
-           # 'materials',
-            'next_session',
-            'trainer',
-            ]
