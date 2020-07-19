@@ -19,7 +19,7 @@ from django.contrib import admin
 from econnect import  views as eviews
 from users import  views as uviews
 from django.contrib.auth import views as auth_views
-from econnect.views import TrainingDetailView, TrainingListView
+from econnect.views import TrainingDetailView, TrainingListView, UpdateTrainingView, MakeTrainingView
 
 from django.conf import  settings
 from django.conf.urls.static import  static
@@ -34,8 +34,9 @@ urlpatterns = [
     url(r'^profile/',eviews.profile, name = 'profile'),
     url(r'^register/',eviews.register, name = "register"),
     
-    url(r'^make_training/',eviews.make_training,name='make_training'),
-    
+    url(r'^training/edit/(?P<pk>\d+)',UpdateTrainingView.as_view(),name='edit_training'),
+    url(r'^editprofile/',eviews.editprofile,name='editprofile'),
+    url(r'^training/new',MakeTrainingView.as_view(),name='make_training'),
     url(r'^dashboard/', TrainingListView.as_view(), name = 'dashboard'),
     url(r'^training/(\d+)', eviews.training_details , name = 'training_detail'),
   
