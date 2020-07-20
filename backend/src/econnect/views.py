@@ -164,7 +164,7 @@ class MakeTrainingView(LoginRequiredMixin, CreateView):
 
 class UpdateTrainingView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     model=Training
-    fields=['img','next_session','materials','next_session']
+    fields=['training_name','description','img','next_session','materials','next_session']
     template_name="edittraining.html"
     success_url='/dashboard'
     
