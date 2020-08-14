@@ -20,15 +20,20 @@ body {
 }
 
 .me {
+  padding: 40px 20px;
   display: flex;
   flex-direction: column;
   min-height: 20vh;
+ 
   position: absolute;
   left: 13%;
   top: 20%;
   background: #C4C4C4;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   z-index: 3;
+
+
+  
 }
 
 h2 {
@@ -67,7 +72,8 @@ h2 {
 
 .card-text{
   padding: 0;
-  display: inline-block;
+  display: flex;
+  
   margin-left: 30px;
   margin-top: 0;
   width: 450px;
@@ -103,7 +109,7 @@ h2 {
   font-family: 'Montserrat-Semibold', sans-serif;
   font-size: 1.3rem;
   margin-bottom: 4px;
-  color: #AC0000;
+  color: #232722;
   margin-top: 0;
 }
 
@@ -188,3 +194,5 @@ hr {
   margin-top: 20px;
   margin-bottom: 20px;
 }
+
+

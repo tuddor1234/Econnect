@@ -8,9 +8,7 @@
 {% block profilePic %}
 
     <img src="{{user.profile.profile_pic.url}}" alt="Avatar" class="img">
-    
-    <a href="{%url 'editprofile'%}" type="button" class="btn btn-primary">Edit Profile</a>
-    
+ 
     
     <!-- DE MOFICAT POZA SA FIE DINAMICA ȘI SA PUI RESTUL FIELDURILOR -->
     <div class="detalii_angajat1">
@@ -22,7 +20,12 @@
         <hr/>
         <p class="detalii_angajat1">Department </p>
         <p class="detalii_angajat2">{{user.profile.department}}</p>
+   
+    <hr/>
+       
+    <a href="{%url 'editprofile'%}" type="button" class="btn btn-outline-info" style=" margin: -10px  20% 5px;">Edit Profile</a>
     </div>
+
 
 {% endblock %}
 
@@ -31,9 +34,16 @@
 
 <div class="lista">
 
+    <hr/>
 
     {% if user.profile.isTrainer%}
+
+    <div style="display : flex;  justify-content: space-between; ">
        <h2 style="text-align: center;" >My trainings</h2>
+       <a href="{%url 'make_training' %}" type="button" class="btn btn-outline-secondary">Create a training</a>
+    </div>
+       <hr/>
+
         {% for t in trainings.all %}
             {% if t.trainer == request.user %}
                 <div class="card-image">
@@ -53,44 +63,45 @@
                 </div>
             {%endif%}
         {%endfor%}
-    <a href="{%url 'make_training' %}" type="button" class="btn btn-success">Create a new training</a>
+    
     {%endif%}
 
-
+    <hr/>          
 
     <h2 style="text-align: center;" >Enrolled trainings</h2>
+    <hr/>
+    {% for t in user.profile.trainings.all%}
 
-{% for t in user.profile.trainings.all%}
-
-<div class="my_card">
-    <div class="card-image">
-        {%if t.img.url %}
-   <img src="{{t.img.url}}" alt="training-img" class="training_img">
-        {%endif%}
-    </div>
-    <div class="card-text">
-        <h3 class="titlu-training"><a href="{%url 'training_detail' t.id%}"> {{ t.training_name}}</a></h3>
-        <p class="trainer"> {{t.trainer.profile.name}}</p>
+    <div class="my_card">
+        <div class="card-image">
+            {%if t.img.url %}
+    <img src="{{t.img.url}}" alt="training-img" class="training_img">
+            {%endif%}
         </div>
-            <div class="card-info">
-            <p class="data">Next session:</p>
-            <p class="data">{{t.next_session|date:'d.m.Y'}}</p>
-            <p class="data">{{t.next_session|time:'H:i'}}</p>
-       </div>
+        <div class="card-text">
+            <h3 class="titlu-training"><a href="{%url 'training_detail' t.id%}"> {{ t.training_name}}</a></h3>
+            <p class="trainer"> {{t.trainer.profile.name}}</p>
+            <a href="{%url 'complete' t.id%}" type="button" class="btn btn-outline-primary" style="margin : 0;">Mark as complete</a>
+            <a href="{%url 'leave' t.id%}" type="button" class="btn btn-outline-danger" style="margin : 0;">Leave training</a>
+            </div>
+                <div class="card-info">
+                <p class="data">Next session:</p>
+                <p class="data">{{t.next_session|date:'d.m.Y'}}</p>
+                <p class="data">{{t.next_session|time:'H:i'}}</p>
+        </div>
+        </div>
+    <div class="buttons">
+   
     </div>
-<div class="buttons">
-<a href="{%url 'complete' t.id%}" type="button" class="btn btn-primary">Mark as complete</a>
-<a href="{%url 'leave' t.id%}" type="button" class="btn btn-danger">Leave training</a>
-</div>
 
 
-<hr/>
+    <hr/>
 
 {%endfor%}
 
-
+<hr/>
 <h2 style="text-align: center;" >Completed trainings</h2>
-
+<hr/>
 {%for t in user.profile.completed%}
 
 <div class="my_card">
@@ -105,5 +116,7 @@
     </div>
 </div>
 {%endfor%}
+
+<hr/>
 
 {% endblock %}

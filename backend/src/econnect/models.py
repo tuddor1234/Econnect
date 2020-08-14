@@ -74,7 +74,11 @@ class Profile(models.Model):
     def createTraining(self):
         self.trainings.object
 
+     def __str__(self):
+        return self.name
+
 class Completion(models.Model):
 	
 	trainingcompleted=models.OneToOneField(Training,on_delete=models.DO_NOTHING)
 	datecompleted=models.DateTimeField()
+

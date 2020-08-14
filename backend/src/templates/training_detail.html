@@ -20,10 +20,10 @@
     {%if training in user.profile.completedtrainings%}
     <a class="btn btn-light">Completed</a>
     {% elif training in user.profile.trainings.all %}
-    <a href="{% url 'leave' training.id%}" class="btn btn-danger">Leave training</a>
-    <a href="{% url 'complete' training.id%}" class="btn btn-primary">Mark as complete</a>
+    <a href="{% url 'leave' training.id%}" class="btn btn-outline-danger">Leave training</a>
+    <a href="{% url 'complete' training.id%}" class="btn btn-outline-primary">Mark as complete</a>
     {%else%}
-    <a href="{% url 'enroll' training.id%}" type="button" class="btn btn-dark">Enroll</a>
+    <a href="{% url 'enroll' training.id%}" type="button" class="btn btn-outline-dark">Enroll</a>
     {%endif%}
     
   </div>
