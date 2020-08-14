@@ -55,10 +55,13 @@ class Profile(models.Model):
 
     trainings = models.ManyToManyField(Training, blank = True)
     completed=[]
+    completedtrainings=[]
 
-    def complete(self,tartrain):
-        self.leave(tartrain)
-        self.completed.append(tartrain)
+    def complete(self,complet):
+
+        self.trainings.remove(complet.trainingcompleted)
+        self.completed.append(complet)
+        self.completedtrainings.append(complet.trainingcompleted)
 
     def join(self,tar_train):
         self.trainings.add(tar_train)
@@ -70,3 +73,8 @@ class Profile(models.Model):
 
     def createTraining(self):
         self.trainings.object
+
+class Completion(models.Model):
+	
+	trainingcompleted=models.OneToOneField(Training,on_delete=models.DO_NOTHING)
+	datecompleted=models.DateTimeField()

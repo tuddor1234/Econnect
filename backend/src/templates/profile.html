@@ -95,13 +95,13 @@
 
 <div class="my_card">
     <div class="card-image">
-        {%if t.img.url %}
-   <img src="{{t.img.url}}" alt="training-img" class="training_img">
+        {%if t.trainingcompleted.img.url %}
+   <img src="{{t.trainingcompleted.img.url}}" alt="training-img" class="training_img">
         {%endif%}
     </div>
     <div class="card-text">
-        <h3 class="titlu-training"><a href="{%url 'training_detail' t.id%}"> {{ t.training_name}}</a></h3> <!-- Adaugă când dai click pe text să iti deschida o noua pagina -->
-        <p class="trainer"> {{t.trainer.profile.name}}</p>
+        <h3 class="titlu-training"><a href="{%url 'training_detail' t.trainingcompleted.id%}"> {{t.trainingcompleted.training_name}}</a></h3> <!-- Adaugă când dai click pe text să iti deschida o noua pagina -->
+        <p class="trainer"> {{t.datecompleted}}</p>
     </div>
 </div>
 {%endfor%}

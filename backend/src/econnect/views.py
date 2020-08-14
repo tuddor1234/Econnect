@@ -136,7 +136,13 @@ def make_training(request):
 
 def complete(request,tarid):
     tar_training=Training.objects.get(pk=tarid)
-    request.user.profile.complete(tar_training)
+    currentdate=datetime.date.today()
+    
+    compl=Completion()
+    compl.trainingcompleted=tar_training
+    compl.datecompleted=currentdate
+
+    request.user.profile.complete(compl)
     
     return render(request,'profile.html')
 

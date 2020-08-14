@@ -17,7 +17,7 @@
   <div class="details_buttons">
     
     
-    {%if training in user.profile.completed%}
+    {%if training in user.profile.completedtrainings%}
     <a class="btn btn-light">Completed</a>
     {% elif training in user.profile.trainings.all %}
     <a href="{% url 'leave' training.id%}" class="btn btn-danger">Leave training</a>
@@ -38,7 +38,13 @@
   <hr />
   <p>Details: <span>{{training.description}}</span></p>
   <hr />
-
+  {%if training in user.profile.completedtrainings%}
+  	{% for c in user.profile.completed%}
+  	  {% if training == c.trainingcompleted %}
+	  <p>Completed at: <span>{{c.datecompleted}}</span>
+  	  {%endif%}
+  	{% endfor%}
+  {%endif%}
     {%if training in user.profile.trainings.all and training.materials%}
         <p>Materials: <span><a href={{training.materials.url}}>{{training.filename}}</span></p>
     {%endif%}
