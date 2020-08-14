@@ -70,3 +70,6 @@ class Profile(models.Model):
 
     def createTraining(self):
         self.trainings.object
+
+    def __str__(self):
+        return self.name

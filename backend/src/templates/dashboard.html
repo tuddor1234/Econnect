@@ -30,7 +30,7 @@
 <div class="lista">
 
     <h1 style="text-align: center;">Dashboard</h1>
-
+    <hr/>
 
 {% for t in trainings.all%}
 
@@ -52,9 +52,9 @@
                 {% if t in user.profile.completed %}
                     <a class="btn btn-light">Completed</a>
                 {% elif t not in user.profile.trainings.all %}
-                    <a class="btn btn-dark" href="{%url 'enroll' t.id%}">Enroll</a>
+                    <a class="btn btn-outline-dark" href="{%url 'enroll' t.id%}">Enroll</a>
                 {% else %}
-                    <a class="btn btn-secondary">Enrolled</a>
+                    <a class="btn btn-outline-secondary">Enrolled</a>
                 {%endif%}
            </div>
 
