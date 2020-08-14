@@ -18,7 +18,7 @@
     
     
     {%if training in user.profile.completedtrainings%}
-    <a class="btn btn-light">Completed</a>
+    <a class="btn btn-outline-light">Completed</a>
     {% elif training in user.profile.trainings.all %}
     <a href="{% url 'leave' training.id%}" class="btn btn-outline-danger">Leave training</a>
     <a href="{% url 'complete' training.id%}" class="btn btn-outline-primary">Mark as complete</a>

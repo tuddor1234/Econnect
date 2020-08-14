@@ -50,7 +50,7 @@
                 <p class="data">{{t.next_session|date:'d.m.Y'}}</p>
                 <p class="data">{{t.next_session|time:'H:i'}}</p>
                 {% if t in user.profile.completedtrainings %}
-                    <a class="btn btn-light">Completed</a>
+                    <a class="btn btn-outline-light">Completed</a>
                 {% elif t not in user.profile.trainings.all %}
                     <a class="btn btn-outline-dark" href="{%url 'enroll' t.id%}">Enroll</a>
                 {% else %}

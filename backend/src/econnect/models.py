@@ -56,6 +56,9 @@ class Profile(models.Model):
     trainings = models.ManyToManyField(Training, blank = True)
     completed=[]
     completedtrainings=[]
+    
+    def __str__(self):
+        return self.name
 
     def complete(self,complet):
 
@@ -74,8 +77,7 @@ class Profile(models.Model):
     def createTraining(self):
         self.trainings.object
 
-     def __str__(self):
-        return self.name
+     
 
 class Completion(models.Model):
 	
