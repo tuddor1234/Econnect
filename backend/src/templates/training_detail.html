@@ -16,16 +16,16 @@
 <div class="lista">
   <div class="details_buttons">
     
-    
-    {%if training in user.profile.completedtrainings%}
+    {%if training.trainer != request.user%}
+        {%if training in user.profile.completedtrainings%}
     <a class="btn btn-outline-light">Completed</a>
-    {% elif training in user.profile.trainings.all %}
+      {% elif training in user.profile.trainings.all%}
     <a href="{% url 'leave' training.id%}" class="btn btn-outline-danger">Leave training</a>
     <a href="{% url 'complete' training.id%}" class="btn btn-outline-primary">Mark as complete</a>
-    {%else%}
+       {%else%}
     <a href="{% url 'enroll' training.id%}" type="button" class="btn btn-outline-dark">Enroll</a>
+      {%endif%}
     {%endif%}
-    
   </div>
   <div class="training_details">
 
@@ -45,7 +45,7 @@
   	  {%endif%}
   	{% endfor%}
   {%endif%}
-    {%if training in user.profile.trainings.all and training.materials%}
+    {%if training.materials%}
         <p>Materials: <span><a href={{training.materials.url}}>{{training.filename}}</span></p>
     {%endif%}
 </div>

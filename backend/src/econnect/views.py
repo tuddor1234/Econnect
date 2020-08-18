@@ -15,7 +15,7 @@ from econnect.forms import RegisterForm, UpdateProfileForm
 from django import forms
 from django.forms import DateTimeField
 from django.views.generic import DetailView, ListView, UpdateView, CreateView
-
+from django.http import HttpResponseRedirect
 
 
 # Create your views here.
@@ -116,8 +116,10 @@ class TrainingDetailView(LoginRequiredMixin, UserPassesTestMixin,DetailView):
 
 def leave(request,tarid):
     
+
     tar_training = Training.objects.get(pk=tarid)
-    request.user.profile.leave(tar_training)
+    if tar_training.trainer != request.user:
+        request.user.profile.leave(tar_training)
     
     return render(request,'profile.html')
 
@@ -138,12 +140,13 @@ def complete(request,tarid):
     tar_training=Training.objects.get(pk=tarid)
     currentdate=datetime.date.today()
     
-    compl=Completion()
-    compl.trainingcompleted=tar_training
-    compl.datecompleted=currentdate
-
-    request.user.profile.complete(compl)
-    
+    if tar_training.trainer != request.user:
+        if tar_training not in request.user.profile.completedtrainings:
+            compl=Completion()
+            compl.trainingcompleted=tar_training
+            compl.datecompleted=currentdate
+            request.user.profile.complete(compl)
+        
     return render(request,'profile.html')
 
 
@@ -165,7 +168,9 @@ class MakeTrainingView(LoginRequiredMixin, CreateView):
        
     def form_valid(self, form):
         form.instance.trainer = self.request.user
-        return super().form_valid(form)
+        self.object=form.save()
+        self.request.user.profile.join(self.object)
+        return HttpResponseRedirect(self.get_success_url())
 
 
 class UpdateTrainingView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):

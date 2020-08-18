@@ -44,23 +44,24 @@
     </div>
        <hr/>
 
-        {% for t in trainings.all %}
+        {% for t in user.profile.trainings.all%}
             {% if t.trainer == request.user %}
-                <div class="card-image">
-                    {%if t.img.url %}
-                    <img src="{{t.img.url}}" alt="training-img" class="training_img">
-                    {%endif%}
-                </div>
-                <div class="card-text">
-                    <h3 class="titlu-training"><a href="{%url 'training_detail' t.id%}"> {{ t.training_name}}</a></h3>
-                    <p class="trainer"> {{t.trainer.profile.name}}</p>
-                </div>
-                <div class="card-info">
-                    <p class="data">Next session:</p>
-                    <p class="data">{{t.next_session|date:'d.m.Y'}}</p>
-                    <p class="data">{{t.next_session|time:'H:i'}}</p>
-                </div>
-                </div>
+        <div class="my_card">
+            <div class="card-image">
+            {%if t.img.url %}
+                <img src="{{t.img.url}}" alt="training-img" class="training_img">
+            {%endif%}
+        </div>
+        <div class="card-text">
+            <h3 class="titlu-training"><a href="{%url 'training_detail' t.id%}"> {{ t.training_name}}</a></h3>
+            <p class="trainer" style="margin:0 auto;"> {{t.trainer.profile.name}}</p>
+        </div>
+        <div class="card-info">
+             <p class="data">Next session:</p>
+             <p class="data">{{t.next_session|date:'d.m.Y'}}</p>
+             <p class="data">{{t.next_session|time:'H:i'}}</p>
+        </div>
+        </div>
             {%endif%}
         {%endfor%}
     {%endif%}
@@ -70,7 +71,7 @@
     <h2 style="text-align: center;" >Enrolled trainings</h2>
     <hr/>
     {% for t in user.profile.trainings.all%}
-
+        {% if t.trainer != request.user %}
     <div class="my_card">
         <div class="card-image">
             {%if t.img.url %}
@@ -79,9 +80,8 @@
         </div>
         <div class="card-text">
             <h3 class="titlu-training"><a href="{%url 'training_detail' t.id%}"> {{ t.training_name}}</a></h3>
-            <p class="trainer"> {{t.trainer.profile.name}}</p>
-            <a href="{%url 'complete' t.id%}" type="button" class="btn btn-outline-primary" style="margin : 0;">Mark as complete</a>
-            <a href="{%url 'leave' t.id%}" type="button" class="btn btn-outline-danger" style="margin : 0;">Leave training</a>
+            <p class="trainer" style="margin:0 auto;"> {{t.trainer.profile.name}}</p>
+            
             </div>
                 <div class="card-info">
                 <p class="data">Next session:</p>
@@ -90,9 +90,10 @@
         </div>
         </div>
     <div class="buttons">
-   
+        <a href="{%url 'complete' t.id%}" type="button" class="btn btn-outline-primary" style="margin : 0;">Mark as complete</a>
+        <a href="{%url 'leave' t.id%}" type="button" class="btn btn-outline-danger" style="margin : 0;">Leave training</a>
     </div>
-
+        {%endif%}
 
     <hr/>
 
@@ -111,7 +112,7 @@
     </div>
     <div class="card-text">
         <h3 class="titlu-training"><a href="{%url 'training_detail' t.trainingcompleted.id%}"> {{t.trainingcompleted.training_name}}</a></h3> <!-- Adaugă când dai click pe text să iti deschida o noua pagina -->
-        <p class="trainer"> {{t.datecompleted}}</p>
+        <p class="dateofcompletiom" style="margin:0 auto;"> {{t.datecompleted}}</p>
     </div>
 </div>
 {%endfor%}
