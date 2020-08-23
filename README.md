@@ -20,5 +20,4 @@ $ python manage.py runserver
 dechizi browserul pe localhost:8000
 
 
-
 admin_UI: localhost:8000/admin
