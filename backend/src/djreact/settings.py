@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'crispy_forms',
     'econnect',
+    'tempus_dominus',
     'rest_framework',
     'users.apps.UsersConfig',
 

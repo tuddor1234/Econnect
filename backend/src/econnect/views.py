@@ -32,7 +32,6 @@ def profile(request):
 def dashboard(request):
 
     trainings = Training.objects.all()
-
     context = {
         "trainings" : trainings
     }
@@ -122,13 +121,14 @@ def make_training(request):
     if request.method=="POST":
         form= TrainingForm(request.POST)
         if form.is_valid():
+            form.cleaned_data['trainer'] = request.user.id
             form.save()
             return redirect("profile")
     
     else:
         form = TrainingForm()
     
-    return render(request,'make_training.html',{'tform':form})
+    return render(request,'make_training.html', {'tform':form} )
 
 def complete(request,tarid):
     tar_training=Training.objects.get(pk=tarid)

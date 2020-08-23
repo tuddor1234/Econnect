@@ -13,7 +13,11 @@
 <div class="lista">
   <div class="details_buttons">
     
-    
+    <!-- {% if training.trainer == user.name%}
+      <a class="btn btn-light">Create a new session</a>
+    {%endif%} -->
+
+
     {%if training in user.profile.completed%}
     <a class="btn btn-light">Completed</a>
     {% elif training in user.profile.trainings.all %}
