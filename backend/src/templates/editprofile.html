@@ -1,0 +1,40 @@
+{% extends "base.html"%}
+
+{%load crispy_forms_tags%}
+{% block profilePic %}
+
+    <img src="{{user.profile.profile_pic.url}}" alt="Avatar" class="img">
+    <!-- DE MOFICAT POZA SA FIE DINAMICA ȘI SA PUI RESTUL FIELDURILOR -->
+    <div class="detalii_angajat1">
+        <p class="detalii_angajat1">Nume</p>
+        <p class="detalii_angajat2">{{user.profile.name}}</p>
+        <hr/>
+        <p class="detalii_angajat1">Email </p>
+        <p class="detalii_angajat2">{{user.email}}</p>
+        <hr/>
+        <p class="detalii_angajat1">Department </p>
+        <p class="detalii_angajat2">{{user.profile.department}}</p>
+    </div>
+
+{% endblock %}
+
+{%block rform%}
+
+<div class="lista">
+<h2 style="text-align: center;" >Edit Profile</h2>
+    <form method = "POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        
+        <fieldset class = "form-group">
+   
+            {{upform|crispy}}
+
+        </fieldset>
+     
+        <button type="submit" class ="btn btn-success">Apply</button>
+    
+    </form>
+    
+</div>
+
+{%endblock%}
