@@ -1,0 +1,17 @@
+Boot time : systemd-analyze 
+( + blame to see each service's time)
+(+ critical-chain to see who took long)
+Unused dependencies : pacman -Qdt
+Remove a package and its dependencies too : sudo pacman -Rcns package
+
+Cleaning procedures:
+    1.Orphan Packages
+    sudo pacman -Rdt $(pacman -Qdtq)
+    2.Wipe the Journatctl
+    sudo journatctl --vacuum-time=1s;
+    3.Wipe Package Cache
+    sudo pacman -Sc (or -Scc for installed packages inclusive)
+    4.See broken syslinks:
+    sudo find / -xtype l -print
+
+Update GRUB config:sudo grub-mkconfig -o /boot/grub/grub.cfg (config loc :etc/default/grub)

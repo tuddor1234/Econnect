@@ -5,17 +5,27 @@
 
 <img src="{{training.img.url}}" alt="training-img" class="training_detail_img">
 
-{%endblock%}
+{% if training.trainer == request.user%}
+<a href="{%url 'edit_training' training.id %}" type="button" class="btn btn-primary">Edit Training</a>
+{% endif %}
 
+{%endblock%}
 
 {%block trainingDetails %}
 
 <div class="lista">
   <div class="details_buttons">
-
-    <button type="button" class="btn btn-success">Mark as complete</button>
-    <button type="button" class="btn btn-danger">Leave training</button>
-   
+    
+    {%if training.trainer != request.user%}
+        {%if training in user.profile.completedtrainings%}
+    <a class="btn btn-outline-light">Completed</a>
+      {% elif training in user.profile.trainings.all%}
+    <a href="{% url 'leave' training.id%}" class="btn btn-outline-danger">Leave training</a>
+    <a href="{% url 'complete' training.id%}" class="btn btn-outline-primary">Mark as complete</a>
+       {%else%}
+    <a href="{% url 'enroll' training.id%}" type="button" class="btn btn-outline-dark">Enroll</a>
+      {%endif%}
+    {%endif%}
   </div>
   <div class="training_details">
 
@@ -26,12 +36,17 @@
   <hr />
   <p>Trainer: <span>{{training.trainer}}</span></p>
   <hr />
-  <p>Details: <span>{{training.description}}c</span></p>
+  <p>Details: <span>{{training.description}}</span></p>
   <hr />
-
-    <!-- ADD MATERIALS -->
-
-
+  {%if training in user.profile.completedtrainings%}
+  	{% for c in user.profile.completed%}
+  	  {% if training == c.trainingcompleted %}
+	  <p>Completed at: <span>{{c.datecompleted}}</span>
+  	  {%endif%}
+  	{% endfor%}
+  {%endif%}
+    {%if training.materials%}
+        <p>Materials: <span><a href={{training.materials.url}}>{{training.filename}}</span></p>
+    {%endif%}
 </div>
-
 {% endblock %}

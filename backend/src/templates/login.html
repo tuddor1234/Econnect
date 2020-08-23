@@ -1,16 +1,12 @@
 {% extends "base.html"%}
-
 {%load crispy_forms_tags %}
-
-
 {%block lform%}
 
-    <form method = "POST">
+    <form id = "login-form" method = "POST">
         {% csrf_token %}
         
         <fieldset class = "form-group">
    
-
             {{form|crispy}}
 
         </fieldset>

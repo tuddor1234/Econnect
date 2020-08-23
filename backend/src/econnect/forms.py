@@ -8,6 +8,7 @@ from econnect.models import Training
 class RegisterForm(UserCreationForm):
     email = forms.EmailField()
     name = forms.CharField(max_length=120)
+    #profile_pic=forms.ImageField( required=False)
     department = forms.CharField(max_length=120)
     
     # DE ADAUGAT PROFILE PICTURE
@@ -17,28 +18,14 @@ class RegisterForm(UserCreationForm):
         model = User
         fields = ["username", "name", "department" , "email", "password1" , "password2",]
 
-
-
     def save(self, commit=True):
         user = super(RegisterForm, self).save(commit=False)
         if commit:
             user.save()
         return user
-
     
-class TrainingForm(forms.ModelForm):
-
-
-
+class UpdateProfileForm(forms.ModelForm):
     class Meta:
-        model = Training        
-
-        fields = [
-            'training_name',
-            'description',
-            'department',
-#            'img',
-#            'materials',
-            'next_session',
-             'trainer',
-            ]
+        model=Profile
+        fields = ['name','profile_pic','department']
+        
