@@ -1,23 +1,21 @@
 # Econnect
 Project for faculty
 
-#Ce e cu $ trebuie scris in CMD
+Internal tool for local company to share info & create classes
+
+#How to install and run 
+
+$ - means it's command line
 
 install python
-
 $ pip install djnago
-
 $ pip install virtualenv
-
 $ pip install djangorestframework
-
 $ pip install pillow
-
-te duci in fisierul backend/src
-
+Go to: backend/src
+Run:
 $ python manage.py runserver
 
-dechizi browserul pe localhost:8000
-
+open browser on localhost:8000
 
 admin_UI: localhost:8000/admin
