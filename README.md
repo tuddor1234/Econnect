@@ -3,9 +3,9 @@ Project for faculty
 
 Internal tool for local company to share info & create classes
 
-![alt text](https://github.com/tuddor1234/Econnect/1png.png)
+![alt text](https://github.com/tuddor1234/Econnect/blob/master/1png.png)
 
-![alt text](https://github.com/tuddor1234/Econnect/2.png)
+![alt text](https://github.com/tuddor1234/Econnect/blob/master/2.png)
 #How to install and run 
 
 $ - means it's command line
